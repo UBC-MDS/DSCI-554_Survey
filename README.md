@@ -31,4 +31,4 @@ What is your age?
 - Linear Regression
 
 ### Ethical Consideration
-- Personal information (age, gender
+- Handling personal information (age, gender)...
