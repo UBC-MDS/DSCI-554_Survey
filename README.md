@@ -28,7 +28,7 @@ What is your age?
 -  Age could influence an individual's ability to weather stress, and could also influence their choice of operating system (e.g. older people might prefer Windows).   
 
 ### Statistical Tests
-- Linear Regression
+We plan to fit a linear regression model with level of stress as the response and laptop operating and any relevant confounders as covariates. We will test whether the coefficient of laptop operating system is significantly different from zero to determine if operating system affects stress level.  
 
 ### Ethical Consideration
-- Handling personal information (age, gender)...
+Our survey contains some questions about indirect identifiers. Knowing a person's age, gender, and background could be enough information to uniquely identify some individuals. As such, our survey will record personal information. According to UBC's ethics guidelines for surveys, we must ensure that all data collected from our survey is stored and accessed only in Canada or obtain consent from survey respondents to store their personal information in another jurisdiction. The ethics guidelines also state that we must obtain consent from survey respondents to participate in our research (either by signed consent form or cover letter). 
