@@ -13,7 +13,7 @@ How would you rate your coding skills?
 
 What subject did you study as an undergraduate?  
 
-- Some fields may have a de facto operating system that they use; this would affect an individual's choice of operating system. Further, if someone studied subjects closely related to data science (e.g. math or CS), they may report lower levels of stress than someone who previously studied subjects that are only tangentially related to data science.  
+- Some fields may have a de facto operating system that they use (e.g. maybe engineers prefer Windows); this would affect an individual's choice of operating system. Further, if someone studied subjects closely related to data science (e.g. math or CS), they may report lower levels of stress than someone who previously studied subjects that are only tangentially related to data science.  
 
 How many years of professional experience do you have?  
 
@@ -21,14 +21,14 @@ How many years of professional experience do you have?
 
 What gender do you identify with?  
   
-- One gender could have a preference for a particular operating system or could be more predisposed to stress.  
+- One gender could have a preference for a particular operating system and could be more predisposed to stress.  
 
 What is your age?  
 
--  Age could influence an individual's ability to weather stress, and could also influence their choice of operating system (e.g. older people might prefer Windows).   
+-  Age could influence an individual's ability to weather stress and could also influence their choice of operating system (e.g. older people might prefer Windows).   
 
 ### Statistical Tests
-We plan to fit a linear regression model with level of stress as the response and laptop operating and any relevant confounders as covariates. We will test whether the coefficient of laptop operating system is significantly different from zero to determine if operating system affects stress level.  
+We plan to fit a linear regression model with level of stress as the response and laptop operating and any relevant confounders as covariates. We will test whether the coefficient of laptop operating system is significant to determine if operating system affects stress level.  
 
-### Ethical Consideration
-Our survey contains some questions about indirect identifiers. Knowing a person's age, gender, and background could be enough information to uniquely identify some individuals. As such, our survey will record personal information. According to UBC's ethics guidelines for surveys, we must ensure that all data collected from our survey is stored and accessed only in Canada or obtain consent from survey respondents to store their personal information in another jurisdiction. The ethics guidelines also state that we must obtain consent from survey respondents to participate in our research (either by signed consent form or cover letter). 
+### Ethical Considerations
+Our survey contains some questions about indirect identifiers. Knowing a person's age, gender, and background could be enough information to uniquely identify some individuals. As such, our survey will record personal information. According to UBC's ethics guidelines for online surveys, we must ensure that all data collected from our survey is stored and accessed only in Canada or obtain consent from survey respondents to store their personal information in another jurisdiction. The ethics guidelines also state that we must obtain consent from survey respondents to participate in our research (either by signed consent form or cover letter). 
