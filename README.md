@@ -1,5 +1,11 @@
 # Operating System vs. Stress Level in MDS
 
+### Project Team
+[Gabriel Bogo](https://github.com/GabrielBogo)
+[Alden Chen](https://github.com/aldenchen)
+[Weifung (Davy) Guo](https://github.com/DavyGuo)
+[Jes Simkin](https://github.com/jessimk)
+
 ### Research Question
 
 Does laptop operating system influence a person's self-rated level of stress in the MDS program?
