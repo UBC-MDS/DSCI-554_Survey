@@ -26,15 +26,15 @@ How many years of professional experience do you have?
 - How much work experience an individual has could affect how well they handle stress. For example, many years in a high-stress job may condition a person to better handle stress. Also, many large enterprises use Windows, so using Windows at work could affect an individual's choice of laptop operating system.  
 
 What gender do you identify with?  
-  
-- One gender could have a preference for a particular operating system and could be more predisposed to stress.  
+
+- Different genders may be socialized to report stress differently.
 
 What is your age?  
 
--  Age could influence an individual's ability to weather stress and could also influence their choice of operating system (e.g. older people might prefer Windows).   
+-  Age could influence an individual's ability to weather stress and could also influence their choice of operating system.
 
 ### Statistical Tests
 We plan to fit a linear regression model with level of stress as the response and laptop operating and any relevant confounders as covariates. We will test whether the coefficient of laptop operating system is significant to determine if operating system affects stress level.  
 
 ### Ethical Considerations
-Our survey contains some questions about indirect identifiers. Knowing a person's age, gender, and background could be enough information to uniquely identify some individuals. As such, our survey will record personal information. According to UBC's ethics guidelines for online surveys, we must ensure that all data collected from our survey is stored and accessed only in Canada or obtain consent from survey respondents to store their personal information in another jurisdiction. The ethics guidelines also state that we must obtain consent from survey respondents to participate in our research (either by signed consent form or cover letter). 
+Our survey contains some questions about indirect identifiers. Knowing an MDS student's age, gender, and operating system could be enough information to uniquely identify some individuals. While our survey will record personal information, we will use methods (such as k-anonymity) to ensure we respect student privacy. According to UBC's ethics guidelines for online surveys, we must ensure that all data collected from our survey is stored and accessed only in Canada or obtain consent from survey respondents to store their personal information in another jurisdiction. The ethics guidelines also state that we must obtain consent from survey respondents to participate in our research (either by signed consent form or cover letter).
