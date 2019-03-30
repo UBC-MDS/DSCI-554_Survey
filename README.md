@@ -3,7 +3,7 @@
 ### Project Team
 [Gabriel Bogo](https://github.com/GabrielBogo)  
 [Alden Chen](https://github.com/aldenchen)  
-[Weifung (Davy) Guo](https://github.com/DavyGuo)  
+[Weifeng (Davy) Guo](https://github.com/DavyGuo)  
 [Jes Simkin](https://github.com/jessimk)
 
 ### Research Question
