@@ -1,3 +1,6 @@
+### Ideas for Survey Questions
+
+
 1. How would you rate your level of stress in the MDS program?
   - Scale 1-5? 1- 10?
   - 1 = little or no stress
@@ -9,12 +12,13 @@
 3. How would you rate your coding skills?
  - Scale?
 
+
+(for remaining questions, should we have categories or allow free responses?)
 4. What subject did you study as an undergraduate?
-- Arts/Humanities, Bio/Life Sciences, Math/Physical Sciences, Social Sciences/Management, Engineering
+
+- e.g. Arts/Humanities, Bio/Life Sciences, Math/CS/Physical Sciences, Social Sciences/Management, Engineering
 
 5. How many years of work experience did you have before starting the program?
-- Categories? e.g. 0-5, 5-10
-- Free response?
 
 6. What gender do you identify with?
 
