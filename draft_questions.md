@@ -13,7 +13,8 @@
  - Scale?
 
 
-(for remaining questions, should we have categories or allow free responses?)
+(for remaining questions, should we have categories or allow free responses?)  
+
 4. What subject did you study as an undergraduate?
 
 - e.g. Arts/Humanities, Bio/Life Sciences, Math/CS/Physical Sciences, Social Sciences/Management, Engineering
