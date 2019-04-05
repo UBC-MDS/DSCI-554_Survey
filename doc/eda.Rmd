@@ -1,0 +1,61 @@
+---
+title: "Exploratory Plots"
+output: pdf_document
+---
+
+```{r include = FALSE}
+library(tidyverse)
+library(gridExtra)
+data <- read_csv("https://raw.github.ubc.ca/MDS-2018-19/DSCI554_project_DavyGuo/master/clean_data.csv?token=AAAGlHbiHxOKw8NAICYyMJ1ejrA9kkrTks5cr2rYwA%3D%3D")
+```
+
+
+```{r coding plots, echo = FALSE}
+coding_stress <- data %>% 
+  ggplot(aes(y = stress, x = coding)) +
+  geom_boxplot() +
+  geom_jitter(alpha = 0.5) +
+  ggtitle("Coding Skill vs. Stress Level") +
+  xlab("Coding Skill") +
+  ylab("Stress Level") +
+  theme_bw()
+
+data$coding <- fct_relevel(data$coding, 
+                           "high",
+                           "moderate",
+                           "average",
+                           "low",
+                           "none")
+coding_os <- data %>% 
+  ggplot(aes(x = coding)) +
+  geom_bar(aes(fill = os )) +
+  scale_fill_viridis_d() +
+  ggtitle("Coding Skill vs Operating System") +
+  xlab("Coding Skill") +
+  theme_bw() 
+
+grid.arrange(coding_stress, coding_os, nrow = 2)
+```  
+
+
+
+```{r age plots, echo = FALSE}
+age_stress <- data %>% 
+  filter(age < 40, age > 20) %>% 
+  ggplot(aes(x = age, y = stress)) +
+  geom_jitter() +
+  theme_bw() +
+  ggtitle("Age vs. Stress Level")
+
+age_os <- data %>% 
+  filter(age < 40, age > 20) %>% 
+  ggplot(aes(y = age, x = os)) +
+  geom_boxplot()+
+  geom_jitter() +
+  theme_bw() +
+  ggtitle("Age vs. Operating System")
+
+grid.arrange(age_stress, age_os, ncol = 2)
+```
+
+
