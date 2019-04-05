@@ -1,0 +1,28 @@
+---
+title: "EDA"
+output: 
+  pdf_document:
+    fig_caption: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+```{r fig.width=7, fig.height=4, fig.cap="\\label{fig:figs} Distribution of Stress Level per Operating System"}
+
+df_clean <- read_csv("../data/clean_data.csv")
+
+df_clean %>% 
+  filter(os != "Linux") %>% 
+  ggplot(aes(x=os, y=stress)) +
+  geom_boxplot() +
+  theme_bw() +
+  ylab("Stress Level") +
+  xlab("Operating System") +
+  theme(axis.title.x = element_text(margin = margin(t = 15, r = 0, b = 10, l = 0)),
+        axis.title.y = element_text(margin = margin(t = 0, r = 15, b = 0, l = 10)))
+```
+
+It's interesting to note that the median stress level is not really different between the two operating systems, but the distribution of stress actually is: Figure 1 shows that most Windows users are concentrated around higher stress levels, whereas a significant part of Mac users present mid-low levels of stress (< 7 in the 0-10 scale).
