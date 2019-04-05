@@ -85,14 +85,16 @@ gender_stress <- data %>%
   geom_boxplot() +
   geom_jitter(alpha = 0.5) +
   theme_bw() +
-  ggtitle("Gender vs. Stress Level")
+  ggtitle("Gender vs. Stress Level") +
+  xlab("")
 
 gender_os <- data %>% 
   ggplot(aes(gender)) +
   geom_bar(aes(fill = os)) +
   scale_fill_viridis_d(name = "") +
   theme_bw() +
-  ggtitle("Gender vs. Operating System")
+  ggtitle("Gender vs. Operating System") +
+  xlab("")
 
 grid.arrange(gender_stress, gender_os, ncol = 2)
   
