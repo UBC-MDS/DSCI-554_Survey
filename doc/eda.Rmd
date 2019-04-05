@@ -43,7 +43,7 @@ grid.arrange(coding_stress, coding_os, nrow = 2)
 age_stress <- data %>% 
   filter(age < 40, age > 20) %>% 
   ggplot(aes(x = age, y = stress)) +
-  geom_jitter() +
+  geom_jitter(alpha = 0.5) +
   theme_bw() +
   ggtitle("Age vs. Stress Level")
 
@@ -51,7 +51,7 @@ age_os <- data %>%
   filter(age < 40, age > 20) %>% 
   ggplot(aes(y = age, x = os)) +
   geom_boxplot()+
-  geom_jitter() +
+  geom_jitter(alpha = 0.5) +
   theme_bw() +
   ggtitle("Age vs. Operating System")
 
@@ -60,7 +60,7 @@ grid.arrange(age_stress, age_os, ncol = 2)
 ```{r experience plots, echo = FALSE}
 experience_stress <- data %>% 
   ggplot(aes(x = work_year, y = stress)) +
-  geom_jitter() +
+  geom_jitter(alpha = 0.5) +
   theme_bw() +
   xlab("years of work experience") + 
   ggtitle("Experience vs. Stress Level")
@@ -68,7 +68,7 @@ experience_stress <- data %>%
 experience_os <- data %>% 
   ggplot(aes(y = work_year, x = os)) +
   geom_boxplot()+
-  geom_jitter() +
+  geom_jitter(alpha = 0.5) +
   theme_bw() +
   xlab("years of work experience") + 
   ggtitle("Experience vs. Operating System")
@@ -81,7 +81,7 @@ grid.arrange(experience_stress, experience_os, ncol = 2)
 gender_stress <- data %>% 
   ggplot(aes(y = stress, x = gender)) +
   geom_boxplot() +
-  geom_jitter() +
+  geom_jitter(alpha = 0.5) +
   theme_bw() +
   ggtitle("Gender vs. Stress Level")
 
@@ -101,7 +101,7 @@ grid.arrange(gender_stress, gender_os, ncol = 2)
 background_stress <- data %>%
   ggplot(aes(x = background, y = stress)) +
   geom_boxplot() +
-  geom_jitter() +
+  geom_jitter(alpha = 0.5) +
   xlab("") +
   coord_flip() +
   theme_bw() +
