@@ -56,6 +56,24 @@ age_os <- data %>%
   ggtitle("Age vs. Operating System")
 
 grid.arrange(age_stress, age_os, ncol = 2)
+```  
+```{r experience plots, echo = FALSE}
+experience_stress <- data %>% 
+  ggplot(aes(x = work_year, y = stress)) +
+  geom_jitter() +
+  theme_bw() +
+  xlab("years of work experience") + 
+  ggtitle("Experience vs. Stress Level")
+
+experience_os <- data %>% 
+  ggplot(aes(y = work_year, x = os)) +
+  geom_boxplot()+
+  geom_jitter() +
+  theme_bw() +
+  xlab("years of work experience") + 
+  ggtitle("Experience vs. Operating System")
+
+grid.arrange(experience_stress, experience_os, ncol = 2)
 ```
 
 ```{r gender plots, echo = FALSE}
@@ -77,5 +95,28 @@ gender_os <- data %>%
 grid.arrange(gender_stress, gender_os, ncol = 2)
   
 
+```  
+
+```{r background blots, echo = FALSE}
+background_stress <- data %>%
+  ggplot(aes(x = background, y = stress)) +
+  geom_boxplot() +
+  geom_jitter() +
+  xlab("") +
+  coord_flip() +
+  theme_bw() +
+  ggtitle("Background vs. Stress Level")
+
+background_os <- data %>% 
+  ggplot(aes(x = background)) +
+  geom_bar(aes(fill = os )) +
+  scale_fill_viridis_d() +
+  ggtitle("Background vs. Operating System") +
+  xlab("") +
+  coord_flip() +
+  theme_bw() 
+grid.arrange(background_stress, background_os)
 ```
+
+
 
