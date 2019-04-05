@@ -70,7 +70,7 @@ experience_os <- data %>%
   geom_boxplot()+
   geom_jitter(alpha = 0.5) +
   theme_bw() +
-  xlab("years of work experience") + 
+  ylab("years of work experience") + 
   ggtitle("Experience vs. Operating System")
 
 grid.arrange(experience_stress, experience_os, ncol = 2)
