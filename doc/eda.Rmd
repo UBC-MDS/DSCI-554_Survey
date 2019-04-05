@@ -22,8 +22,7 @@ coding_stress <- data %>%
   geom_boxplot() +
   geom_jitter(alpha = 0.5) +
   ggtitle("Coding Skill vs. Stress Level") +
-  xlab("Coding Skill") +
-  ylab("Stress Level") +
+  xlab("coding skill") +
   theme_bw()
 
 
@@ -32,7 +31,7 @@ coding_os <- data %>%
   geom_bar(aes(fill = os )) +
   scale_fill_viridis_d() +
   ggtitle("Coding Skill vs Operating System") +
-  xlab("Coding Skill") +
+  xlab("coding skill") +
   theme_bw() 
 
 grid.arrange(coding_stress, coding_os, nrow = 2)
@@ -59,4 +58,24 @@ age_os <- data %>%
 grid.arrange(age_stress, age_os, ncol = 2)
 ```
 
+```{r gender plots, echo = FALSE}
+
+gender_stress <- data %>% 
+  ggplot(aes(y = stress, x = gender)) +
+  geom_boxplot() +
+  geom_jitter() +
+  theme_bw() +
+  ggtitle("Gender vs. Stress Level")
+
+gender_os <- data %>% 
+  ggplot(aes(gender)) +
+  geom_bar(aes(fill = os)) +
+  scale_fill_viridis_d() +
+  theme_bw() +
+  ggtitle("Gender vs. Operating System")
+
+grid.arrange(gender_stress, gender_os, ncol = 2)
+  
+
+```
 
