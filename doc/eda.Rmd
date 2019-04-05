@@ -11,6 +11,12 @@ data <- read_csv("https://raw.github.ubc.ca/MDS-2018-19/DSCI554_project_DavyGuo/
 
 
 ```{r coding plots, echo = FALSE}
+data$coding <- fct_relevel(data$coding, 
+                           "high",
+                           "moderate",
+                           "average",
+                           "low",
+                           "none")
 coding_stress <- data %>% 
   ggplot(aes(y = stress, x = coding)) +
   geom_boxplot() +
@@ -20,12 +26,7 @@ coding_stress <- data %>%
   ylab("Stress Level") +
   theme_bw()
 
-data$coding <- fct_relevel(data$coding, 
-                           "high",
-                           "moderate",
-                           "average",
-                           "low",
-                           "none")
+
 coding_os <- data %>% 
   ggplot(aes(x = coding)) +
   geom_bar(aes(fill = os )) +
