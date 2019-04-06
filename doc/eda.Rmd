@@ -20,16 +20,28 @@ kable(summary(data)) %>% kable_styling()
 
 ```{r OS vs Stress, fig.height = 3, fig.width = 7, fig.caption = "\\label{fig:figs} Distribution of Stress Level by Operating System"}
 
-data %>% 
+os_stress <- data %>% 
   filter(os != "Linux") %>% 
   ggplot(aes(x=os, y=stress)) +
   geom_boxplot() +
+  geom_jitter(alpha = 0.5) +
   theme_bw() +
   ylab("Stress Level") +
-  xlab("Operating System") +
-  ggtitle("Operating System vs Stress Level") +
+  xlab("") +
+  ggtitle("Operating System vs. Stress Level") +
   theme(axis.title.x = element_text(margin = margin(t = 15, r = 0, b = 10, l = 0)),
         axis.title.y = element_text(margin = margin(t = 0, r = 15, b = 0, l = 10)))
+
+stress_dist <- data %>%
+  ggplot(aes(x = stress)) +
+  geom_histogram(color="black",bins = 20)+
+  labs(title="Distribution of Stress Level",x= "Stress Level", y = "Count")+
+  geom_line(y = mean(data$stress), colour = "red", lty =2) + 
+  annotate("text", x = 3, y = 7, label = "Average Stress Level") +
+  theme_bw()
+
+grid.arrange(stress_dist, os_stress, ncol = 2)
+  
 ```  
   
 It's interesting to note that the median stress level is not really different between the two operating systems, but the distribution of stress actually is: Figure 1 shows that most Windows users are concentrated around higher stress levels, whereas a significant part of Mac users present mid-low levels of stress (< 7 in the 0-10 scale).  
@@ -84,6 +96,7 @@ grid.arrange(experience_stress, experience_os, ncol = 2)
 ```  
 
 
+
 ```{r gender plots, fig.height = 3, fig.width = 7,  fig.caption = "Gender"}
 
 gender_stress <- data %>% 
@@ -106,12 +119,18 @@ gender_os <- data %>%
 grid.arrange(gender_stress, gender_os, ncol = 2)
   
 
-```    
+```  
+
+
 
 ```{r background plots, fig.height = 4, fig.width = 7, fig.caption = "Background"}
 
+data$background <- fct_collapse(data$background, 
+                                "CS/Engineering" = "Engineering (excluding Computer Engineering)",
+                                "CS/Engineering" = "Computer Science/Engineering",
+                                "Arts/Social Sciences/Management" = "Finance/Business/Management/Economics",
+                                "Arts/Social Sciences/Management" = "Arts, Humanities, and Social Sciences")
 background_stress <- data %>%
-  filter(background != "Arts, Humanities, and Social Sciences") %>% 
   ggplot(aes(x = background, y = stress)) +
   geom_boxplot() +
   geom_jitter(alpha = 0.5) +
@@ -132,6 +151,8 @@ background_os <- data %>%
   theme_bw() 
 grid.arrange(background_stress, background_os, nrow = 2)
 ```  
+
+
 
 
 
