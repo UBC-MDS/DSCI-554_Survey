@@ -57,7 +57,7 @@ kable(data %>% group_by(gender) %>% summarise(count = n()) %>% t())
 
 ### Figures
 
-```{r OS vs Stress, fig.height = 3, fig.width = 8, fig.caption = "\\label{fig:figs} Distribution of Stress Level by Operating System"}
+```{r OS vs Stress, fig.height = 3, fig.width = 10, fig.caption = "\\label{fig:figs} Distribution of Stress Level by Operating System"}
 
 os_stress <- data %>% 
   filter(os != "Linux") %>% 
@@ -123,7 +123,7 @@ That said, students with Mac operating systems tended to report higher pre-MDS c
 
 <br></br>
 
-```{r experience plots, fig.height = 3, fig.width = 7, echo = FALSE}
+```{r experience plots, fig.height = 3, fig.width = 9, echo = FALSE}
 experience_stress <- data %>%
   filter(work_year < 11) %>% 
   ggplot(aes(x = work_year, y = stress)) +
