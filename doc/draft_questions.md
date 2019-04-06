@@ -5,6 +5,7 @@
   - Scale 1-5? 1- 10?
   - 1 = little or no stress
   - 5 or 10 = great deal of stress
+  - Note, the APA uses  a "10-point scale where 1 is little or no stress and 10 is a great deal of stress" in its annual stress survey
 
 1. (alternative) How often do you feel stress-related symptoms connected with MDS activities? *Ex: Tense body, hard time feeling relaxed, irritability, anger, feelings of worry, etc.*
 - 1. Never
