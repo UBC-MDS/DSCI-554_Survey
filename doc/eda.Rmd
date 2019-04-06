@@ -24,7 +24,7 @@ os_stress <- data %>%
   filter(os != "Linux") %>% 
   ggplot(aes(x=os, y=stress)) +
   geom_boxplot() +
-  geom_jitter(alpha = 0.5) +
+  geom_jitter(alpha = 0.2) +
   theme_bw() +
   ylab("Stress Level") +
   xlab("") +
