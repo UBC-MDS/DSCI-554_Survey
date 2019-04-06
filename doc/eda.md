@@ -18,10 +18,10 @@ anonymity.
 | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `stress`     | Self-reported stress level on a scale from 0-10 with 10 being the most stressed and 0 being not stressed                                                                                                                           |
 | `os`         | Operating System, (Windows, Mac, Linux)                                                                                                                                                                                            |
-| `coding`     | Self-reported pre-MDS programming skills, (No Level, Low, Average, Moderately High, High                                                                                                                                           |
+| `coding`     | Self-reported pre-MDS programming skills, (No Level, Low, Average, Moderately High, High)                                                                                                                                          |
 | `background` | Undergraduate Subject of Study, (Biological/Life Sciences, Business/Economics/Finance/Management, Math/Physical Sciences, Engineering (excluding Computer Science), Computer Science/Engineering, Arts/Humanities/Social Sciences) |
 | `work_year`  | Number of years of work experience pre-MDS, (Integer, Prefer Not to Say)                                                                                                                                                           |
-| `gender`     | Self-identified Gender, (Female, Male, Freetext Response, Prefer Not to Say                                                                                                                                                        |
+| `gender`     | Self-identified Gender, (Female, Male, Freetext Response, Prefer Not to Say)                                                                                                                                                       |
 | `age`        | Age, (Integer, Prefer Not to Say)                                                                                                                                                                                                  |
 
 ### Summary Tables
