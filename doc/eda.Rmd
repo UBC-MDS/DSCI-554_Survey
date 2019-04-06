@@ -1,6 +1,6 @@
 ---
 title: "Operating System vs. Stress Level in MDS"
-output: pdf_document
+output: github_document
 ---
 
 # Exploratory Data Analysis
@@ -68,7 +68,8 @@ os_stress <- data %>%
   xlab("") +
   ggtitle("Fig.2: Operating System vs. Stress Level") +
   theme(axis.title.x = element_text(margin = margin(t = 15, r = 0, b = 10, l = 0)),
-        axis.title.y = element_text(margin = margin(t = 0, r = 15, b = 0, l = 10)))
+        axis.title.y = element_text(margin = margin(t = 0, r = 15, b = 0, l = 10)))+
+  theme(plot.title = element_text(size=11))
 
 stress_dist <- data %>%
   ggplot(aes(x = stress)) +
@@ -76,7 +77,8 @@ stress_dist <- data %>%
   labs(title="Fig.1: Distribution of Stress Level",x= "Stress Level", y = "Count")+
   geom_vline(xintercept = mean(data$stress), colour = "red", lty =2) + 
   annotate("text", x = 3.5, y = 8, label = "Average Stress Level", colour = "red") +
-  theme_bw()
+  theme_bw()+
+  theme(plot.title = element_text(size=11))
 
 grid.arrange(stress_dist, os_stress, ncol = 2)
   
@@ -101,7 +103,8 @@ coding_stress <- data %>%
   geom_jitter(alpha = 0.5) +
   ggtitle("Fig.3: Coding Skill vs. Stress Level") +
   xlab("coding skill") +
-  theme_bw()
+  theme_bw()+
+  theme(plot.title = element_text(size=11))
 
 
 coding_os <- data %>% 
@@ -111,7 +114,8 @@ coding_os <- data %>%
   scale_fill_viridis_d(name = "") +
   ggtitle("Fig.4: Coding Skill vs. Operating System") +
   xlab("coding skill") +
-  theme_bw() 
+  theme_bw() +
+  theme(plot.title = element_text(size=11))
 
 grid.arrange(coding_stress, coding_os, nrow = 2)
 ```
@@ -129,7 +133,8 @@ experience_stress <- data %>%
   geom_jitter(alpha = 0.5) +
   theme_bw() +
   xlab("years of work experience") + 
-  ggtitle("Fig.5: Experience vs. Stress Level")
+  ggtitle("Fig.5: Experience vs. Stress Level")+
+  theme(plot.title = element_text(size=11))
 
 experience_os <- data %>% 
   filter(os != "Linux", work_year < 11) %>%
@@ -139,7 +144,8 @@ experience_os <- data %>%
   theme_bw() +
   ylab("years of work experience") + 
   xlab("") +
-  ggtitle("Fig.6: Experience vs. Operating System") 
+  ggtitle("Fig.6: Experience vs. Operating System") +
+  theme(plot.title = element_text(size=11))
 
 grid.arrange(experience_stress, experience_os, ncol = 2)
 ```  
@@ -165,7 +171,8 @@ gender_stress <- data %>%
   theme_bw() +
   ggtitle("Fig.7: Gender vs. Stress Level") +
   xlab("") +
-  theme(axis.text.x = element_text(angle=45, hjust=1))
+  theme(axis.text.x = element_text(angle=45, hjust=1))+
+  theme(plot.title = element_text(size=11))
 
 gender_os <- data %>% 
   filter(os != "Linux") %>% 
@@ -175,7 +182,8 @@ gender_os <- data %>%
   theme_bw() +
   ggtitle("Fig.8: Gender vs. Operating System") +
   xlab("")+
-  theme(axis.text.x = element_text(angle=45, hjust=1))
+  theme(axis.text.x = element_text(angle=45, hjust=1))+
+  theme(plot.title = element_text(size=11))
 
 
 grid.arrange(gender_stress, gender_os, ncol = 2)
@@ -201,7 +209,8 @@ background_stress <- data %>%
   xlab("") +
   coord_flip() +
   theme_bw() +
-  ggtitle("Fig.9: Background vs. Stress Level")
+  ggtitle("Fig.9: Background vs. Stress Level")+
+  theme(plot.title = element_text(size=11))
 
 background_os <- data %>% 
   filter(os != "Linux",
@@ -212,7 +221,9 @@ background_os <- data %>%
   ggtitle("Fig.10: Background vs. Operating System") +
   xlab("") +
   coord_flip() +
-  theme_bw() 
+  theme_bw() +
+  theme(plot.title = element_text(size=11))
+
 grid.arrange(background_stress, background_os, nrow = 2)
 ```  
 
