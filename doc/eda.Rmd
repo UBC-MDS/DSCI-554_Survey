@@ -1,50 +1,96 @@
 ---
-title: "Exploratory Data Analysis"
-output: 
-  pdf_document:
-    fig_caption: yes
+title: "Operating System vs. Stress Level in MDS"
+output: html_document
 ---
+
+# Exploratory Data Analysis
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 library(tidyverse)
 library(gridExtra)
-library(kableExtra)
+library(knitr)
+library(summarytools)
+library(tibble)
+
 data <- read_csv("../cleaned_data.csv")
 ```  
+  
+<br></br>  
 
 
-```{r, fig.width = 7}
-kable(summary(data)) %>% kable_styling()
+### Our Data
+
+For our study, we had 52 MDS students from the 2018-2019 cohort respond to our survey discussing operating systems and self-reported stress levels. 
+
+We have slightly more Mac users than Windows users. We decided to not include Linux users as we didn't have enough responses to preserve student anonymity. 
+
+```{r}
+summary_legend <- tribble(
+  ~'Variable',~'Description',
+  "stress", "Self-reported stress level on a scale from 0-10 with 10 being the most stressed and 0 being not stressed.",
+  "os", "Operating System, (Windows, Mac, Linux).",
+  "coding", "Self-reported pre-MDS programming skills, (No Level, Low, Average, Moderately High, High).",
+  "background", "Undergraduate Subject of Study, (Biological/Life Sciences, Finance/Business/Management/Economics, Math/Physical Sciences, Engineering (excluding Computer Science), Computer Science/Engineering, Arts/Humanities/Social Sciences).",
+  "work_year", "Number of years of work experience pre-MDS, (Integer, Prefer Not to Say).",
+  "gender", "Self-identified Gender, (Female, Male, Freetext Response, Prefer Not to Say)",
+  "age", "Age, (Integer, Prefer Not to Say)"
+)
+kable(summary_legend)
 ```
 
-```{r OS vs Stress, fig.height = 3, fig.width = 7, fig.caption = "\\label{fig:figs} Distribution of Stress Level by Operating System"}
+
+### Summary Tables
+
+```{r, fig.width = 7}
+descr(data, stats = "common", transpose = TRUE, style = "rmarkdown") %>% kable()
+```
+
+#### Categorical Variables - Tally Tables
+
+```{r}
+kable(data %>% group_by(os) %>% summarise(count = n()) %>% t())
+
+kable(data %>% group_by(coding) %>% summarise(count = n()) %>% t())
+
+kable(data %>% group_by(background) %>% summarise(count = n()))
+
+kable(data %>% group_by(gender) %>% summarise(count = n()) %>% t())
+```
+
+### Figures
+
+```{r OS vs Stress, fig.height = 3, fig.width = 8, fig.caption = "\\label{fig:figs} Distribution of Stress Level by Operating System"}
 
 os_stress <- data %>% 
   filter(os != "Linux") %>% 
   ggplot(aes(x=os, y=stress)) +
   geom_boxplot() +
-  geom_jitter(alpha = 0.2) +
+  geom_jitter(alpha = 0.3) +
   theme_bw() +
   ylab("Stress Level") +
   xlab("") +
-  ggtitle("Operating System vs. Stress Level") +
+  ggtitle("Fig.2: Operating System vs. Stress Level") +
   theme(axis.title.x = element_text(margin = margin(t = 15, r = 0, b = 10, l = 0)),
         axis.title.y = element_text(margin = margin(t = 0, r = 15, b = 0, l = 10)))
 
 stress_dist <- data %>%
   ggplot(aes(x = stress)) +
   geom_histogram(color="black",bins = 20)+
-  labs(title="Distribution of Stress Level",x= "Stress Level", y = "Count")+
-  geom_line(y = mean(data$stress), colour = "red", lty =2) + 
-  annotate("text", x = 3, y = 7, label = "Average Stress Level") +
+  labs(title="Fig.1: Distribution of Stress Level",x= "Stress Level", y = "Count")+
+  geom_vline(xintercept = mean(data$stress), colour = "red", lty =2) + 
+  annotate("text", x = 3.5, y = 8, label = "Average Stress Level", colour = "red") +
   theme_bw()
 
 grid.arrange(stress_dist, os_stress, ncol = 2)
   
 ```  
-  
-It's interesting to note that the median stress level is not really different between the two operating systems, but the distribution of stress actually is: Figure 1 shows that most Windows users are concentrated around higher stress levels, whereas a significant part of Mac users present mid-low levels of stress (< 7 in the 0-10 scale).  
+
+We can see that stress is slightly skewed to the right, and centered around an average stress level of 6.35 (Figure 1).
+ 
+It's also interesting to note that the median stress level is not really different between the two operating systems, but the distribution of stress actually is. Figure 2 shows that most Windows users are concentrated around higher stress levels, whereas a significant part of Mac users present mid-low levels of stress (< 7 in the 0-10 scale).  
+
+<br></br>
 
 ```{r coding plots,  fig.width = 7, fig.height = 4, fig.caption = "Coding Skills"}
 data$coding <- fct_relevel(data$coding, 
@@ -57,7 +103,7 @@ coding_stress <- data %>%
   ggplot(aes(y = stress, x = coding)) +
   geom_boxplot() +
   geom_jitter(alpha = 0.5) +
-  ggtitle("Coding Skill vs. Stress Level") +
+  ggtitle("Fig.3: Coding Skill vs. Stress Level") +
   xlab("coding skill") +
   theme_bw()
 
@@ -65,14 +111,21 @@ coding_stress <- data %>%
 coding_os <- data %>% 
   filter(os != "Linux") %>% 
   ggplot(aes(x = coding)) +
-  geom_bar(aes(fill = os )) +
+  geom_bar(aes(fill = os ), position = 'dodge') +
   scale_fill_viridis_d(name = "") +
-  ggtitle("Coding Skill vs. Operating System") +
+  ggtitle("Fig.4: Coding Skill vs. Operating System") +
   xlab("coding skill") +
   theme_bw() 
 
 grid.arrange(coding_stress, coding_os, nrow = 2)
-```    
+```
+
+From Figure 3, we can see that the median stress level doesn't vary drastically across different coding skill groups.  
+
+That said, students with Mac operating systems tended to report higher pre-MDS coding skills than those students with Windows operating systems (Figure 4). 
+
+<br></br>
+
 ```{r experience plots, fig.height = 3, fig.width = 7, echo = FALSE}
 experience_stress <- data %>%
   filter(work_year < 11) %>% 
@@ -80,7 +133,7 @@ experience_stress <- data %>%
   geom_jitter(alpha = 0.5) +
   theme_bw() +
   xlab("years of work experience") + 
-  ggtitle("Experience vs. Stress Level")
+  ggtitle("Fig.5: Experience vs. Stress Level")
 
 experience_os <- data %>% 
   filter(os != "Linux", work_year < 11) %>%
@@ -90,12 +143,22 @@ experience_os <- data %>%
   theme_bw() +
   ylab("years of work experience") + 
   xlab("") +
-  ggtitle("Experience vs. Operating System") 
+  ggtitle("Fig.6: Experience vs. Operating System") 
 
 grid.arrange(experience_stress, experience_os, ncol = 2)
 ```  
 
+Examining pre-program work experience (in years) and stress levels, it's hard to see a clear pattern beyond the distribution of the work experience data-- most students have less than ~5 years of work experience (Figure 5).
 
+Given that our data set is small, we decided to limit our figure to a range of 0 - 10 years to preserve the anonymity of the students who participated in our survey.
+
+It's possible that students with more than ~5 years of work experience report higher stress levels, though there's considerably less data here.
+
+It is interesting to note that the median number of work experience years is slightly higher for Windows users versus Mac users, though both OS groups are quite spread out in terms of work experience years (Figure 6).
+
+We decided to not visualize the Age variable in order to preserve student anonymity. We also found that the patterns in the Age variable were similar to the patterns in the Work Experience variable, so visualizing both variables would no add value to this exploratory analysis.
+
+<br></br>
 
 ```{r gender plots, fig.height = 3, fig.width = 7,  fig.caption = "Gender"}
 
@@ -104,24 +167,29 @@ gender_stress <- data %>%
   geom_boxplot() +
   geom_jitter(alpha = 0.5) +
   theme_bw() +
-  ggtitle("Gender vs. Stress Level") +
-  xlab("")
+  ggtitle("Fig.7: Gender vs. Stress Level") +
+  xlab("") +
+  theme(axis.text.x = element_text(angle=45, hjust=1))
 
 gender_os <- data %>% 
   filter(os != "Linux") %>% 
   ggplot(aes(gender)) +
-  geom_bar(aes(fill = os)) +
+  geom_bar(aes(fill = os), position = 'dodge') +
   scale_fill_viridis_d(name = "") +
   theme_bw() +
-  ggtitle("Gender vs. Operating System") +
-  xlab("")
+  ggtitle("Fig.8: Gender vs. Operating System") +
+  xlab("")+
+  theme(axis.text.x = element_text(angle=45, hjust=1))
+
 
 grid.arrange(gender_stress, gender_os, ncol = 2)
   
 
 ```  
 
+In terms of gender identities and stress levels, a very small number of survey respondents prefered not to report their gender identity and these students also reported higher stress levels than binary gender identities (Figure 7). Otherwise, among female and male gender identities, there were no considerable differences in stress or OS system usage (Figure 8). 
 
+<br></br>
 
 ```{r background plots, fig.height = 4, fig.width = 7, fig.caption = "Background"}
 
@@ -137,22 +205,26 @@ background_stress <- data %>%
   xlab("") +
   coord_flip() +
   theme_bw() +
-  ggtitle("Background vs. Stress Level")
+  ggtitle("Fig.9: Background vs. Stress Level")
 
 background_os <- data %>% 
   filter(os != "Linux",
          background != "Arts, Humanities, and Social Sciences") %>% 
   ggplot(aes(x = background)) +
-  geom_bar(aes(fill = os )) +
+  geom_bar(aes(fill = os ), position = 'dodge') +
   scale_fill_viridis_d(name = "") +
-  ggtitle("Background vs. Operating System") +
+  ggtitle("Fig.10: Background vs. Operating System") +
   xlab("") +
   coord_flip() +
   theme_bw() 
 grid.arrange(background_stress, background_os, nrow = 2)
 ```  
 
+For Figures 9 and 10 examining student education backgrounds, we decided to group Computer Science and Engineering backgrounds, as well as Arts, Social Sciences and Business/Managament backgrounds, in order to preserve student anonymity. In both the Computer Science group as well as the Arts, Humanities, and Social Sciences groups, we had 5 or less respondents.
 
+Following the grouping, in Figure 10, we see that students with Computer Science/Engineering as well as Arts/Social Sciences/Business/Mangagement backgrounds both were groups that preferred Mac over Windows.
+
+The group with the lowest median stress level was Math/Physical Sciences and the group with the highest median stress level is the Computer Science and Engineering group. The group with the least variance is Arts, Social Sciences, Business/Management (Figure 10).
 
 
 
