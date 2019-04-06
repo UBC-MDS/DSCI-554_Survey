@@ -3,8 +3,6 @@ Operating System vs. Stress Level in MDS
 
 # Exploratory Data Analysis
 
-<br></br>
-
 ### Our Data
 
 For our study, we had 52 MDS students from the 2018-2019 cohort respond

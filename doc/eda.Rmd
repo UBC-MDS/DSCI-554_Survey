@@ -1,6 +1,6 @@
 ---
 title: "Operating System vs. Stress Level in MDS"
-output: html_document
+output: github_document
 ---
 
 # Exploratory Data Analysis
@@ -16,9 +16,6 @@ library(tibble)
 data <- read_csv("../cleaned_data.csv")
 ```  
   
-<br></br>  
-
-
 ### Our Data
 
 For our study, we had 52 MDS students from the 2018-2019 cohort respond to our survey discussing operating systems and self-reported stress levels. 
