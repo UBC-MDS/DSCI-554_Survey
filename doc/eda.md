@@ -10,15 +10,16 @@ For our study, we had 52 MDS students from the 2018-2019 cohort respond to our s
 
 We have slightly more Mac users than Windows users. We decided to not include Linux users as we didn't have enough responses to preserve student anonymity.
 
-| Variable   | Description                                                                                                                                                                                                                         |
-|:-----------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| stress     | Self-reported stress level on a scale from 0-10 with 10 being the most stressed and 0 being not stressed.                                                                                                                           |
-| os         | Operating System, (Windows, Mac, Linux).                                                                                                                                                                                            |
-| coding     | Self-reported pre-MDS programming skills, (No Level, Low, Average, Moderately High, High).                                                                                                                                          |
-| background | Undergraduate Subject of Study, (Biological/Life Sciences, Finance/Business/Management/Economics, Math/Physical Sciences, Engineering (excluding Computer Science), Computer Science/Engineering, Arts/Humanities/Social Sciences). |
-| work\_year | Number of years of work experience pre-MDS, (Integer, Prefer Not to Say).                                                                                                                                                           |
-| gender     | Self-identified Gender, (Female, Male, Freetext Response, Prefer Not to Say)                                                                                                                                                        |
-| age        | Age, (Integer, Prefer Not to Say)                                                                                                                                                                                                   |
+| Variable     | Description                                                                                                                                                      |
+|:-------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| stress       | Self-reported stress level on a scale from 0-10 with 10 being the most stressed and 0 being not stressed.                                                        |
+| os           | Operating System, (Windows, Mac, Linux).                                                                                                                         |
+| coding       | Self-reported pre-MDS programming skills, (No Level, Low, Average, Moderately High, High).                                                                       |
+| background   | Undergraduate Subject of Study,                                                                                                                                  |
+| (Bio/Life Sc | iences, Business/Econ/Finance, Math/Physical Sciences, Engineering (excluding Computer Science), Computer Science/Engineering, Arts/Humanities/Social Sciences). |
+| work\_year   | Number of years of work experience pre-MDS, (Integer, Prefer Not to Say).                                                                                        |
+| gender       | Self-identified Gender, (Female, Male, Freetext Response, Prefer Not to Say)                                                                                     |
+| age          | Age, (Integer, Prefer Not to Say)                                                                                                                                |
 
 ### Summary Tables
 
