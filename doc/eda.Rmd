@@ -1,6 +1,6 @@
 ---
 title: "Operating System vs. Stress Level in MDS"
-output: github_document
+output: pdf_document
 ---
 
 # Exploratory Data Analysis
@@ -22,19 +22,18 @@ For our study, we had 52 MDS students from the 2018-2019 cohort respond to our s
 
 We have slightly more Mac users than Windows users. We decided to not include Linux users as we didn't have enough responses to preserve student anonymity. 
 
-```{r}
-summary_legend <- tribble(
-  ~'Variable',~'Description',
-  "stress", "Self-reported stress level on a scale from 0-10 with 10 being the most stressed and 0 being not stressed.",
-  "os", "Operating System, (Windows, Mac, Linux).",
-  "coding", "Self-reported pre-MDS programming skills, (No Level, Low, Average, Moderately High, High).",
-  "background", "Undergraduate Subject of Study, (Biological/Life Sciences, Finance/Business/Management/Economics, Math/Physical Sciences, Engineering (excluding Computer Science), Computer Science/Engineering, Arts/Humanities/Social Sciences).",
-  "work_year", "Number of years of work experience pre-MDS, (Integer, Prefer Not to Say).",
-  "gender", "Self-identified Gender, (Female, Male, Freetext Response, Prefer Not to Say)",
-  "age", "Age, (Integer, Prefer Not to Say)"
-)
-kable(summary_legend)
-```
+
+|Variable|Description|
+|---------|-----------------------------------------------------------|
+|`stress`|Self-reported stress level on a scale from 0-10 with 10 being the most stressed and 0 being not stressed |
+|`os`| Operating System, (Windows, Mac, Linux) |
+|`coding`|Self-reported pre-MDS programming skills, (No Level, Low, Average, Moderately High, High|
+|`background`|Undergraduate Subject of Study,  (Biological/Life Sciences, Business/Economics/Finance/Management, Math/Physical Sciences, Engineering (excluding Computer Science), Computer Science/Engineering, Arts/Humanities/Social Sciences)|
+|`work_year`|Number of years of work experience pre-MDS, (Integer, Prefer Not to Say)|
+|`gender`|Self-identified Gender, (Female, Male, Freetext Response, Prefer Not to Say|
+|`age`|Age, (Integer, Prefer Not to Say)|
+
+
 
 
 ### Summary Tables
@@ -57,7 +56,7 @@ kable(data %>% group_by(gender) %>% summarise(count = n()) %>% t())
 
 ### Figures
 
-```{r OS vs Stress, fig.height = 3, fig.width = 8, fig.caption = "\\label{fig:figs} Distribution of Stress Level by Operating System"}
+```{r OS vs Stress, fig.height = 3, fig.width = 10, fig.caption = "\\label{fig:figs} Distribution of Stress Level by Operating System"}
 
 os_stress <- data %>% 
   filter(os != "Linux") %>% 
@@ -123,7 +122,7 @@ That said, students with Mac operating systems tended to report higher pre-MDS c
 
 <br></br>
 
-```{r experience plots, fig.height = 3, fig.width = 7, echo = FALSE}
+```{r experience plots, fig.height = 3, fig.width = 9, echo = FALSE}
 experience_stress <- data %>%
   filter(work_year < 11) %>% 
   ggplot(aes(x = work_year, y = stress)) +
