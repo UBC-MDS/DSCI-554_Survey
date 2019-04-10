@@ -9,7 +9,7 @@ output: pdf_document
 
 ##### Survey Study Design
 
-Our survey asks respondents what operating system they use on their laptop and  what their level of stress is on a scale from 0 to 10, where 0 represents "little or no stress" and 10 represents" a great deal of stress." The remaining questions targetted what we thought could be potential confounders: age, work experience, gender, self-reported coding proficiency, and academic background. 
+Our survey asks respondents what operating system they use on their laptop and  what their level of stress is on a scale from 0 to 10, where 0 represents "little or no stress" and 10 represents "a great deal of stress." The remaining questions targetted what we thought could be potential confounders: age, work experience, gender, self-reported coding proficiency, and academic background. 
 
 For work experience and age we asked users to enter a number, rather than having pre-determined bins. We did this so that we could have more detailed data for our analysis. In order to preserve survey respondents' anonymity, we also gave them a "prefer not to say" option for questions about age, work experience, and gender. 
 
@@ -19,7 +19,7 @@ We collected the survey data using the UBC-hosted version of Qualtrics, as recom
 
 ##### Analysis Methods
 
-After cleaning the data, we collected conducted some exploratory data analysis to see if there was a relationship between OS and stress and to see if the potential confounders had any association with operating system or stress.  
+After cleaning the data, we collected produced some exploratory plots to see if there was a relationship between operating system and stress and to see if the potential confounders had any association with operating system or stress.  
 
 To determine if operating system affects stress level, we fit a linear regression model and tested the significance of the coefficient of `os`.
 
