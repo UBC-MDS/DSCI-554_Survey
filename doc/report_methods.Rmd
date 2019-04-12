@@ -21,7 +21,7 @@ We collected the survey data using the UBC-hosted version of Qualtrics, as recom
 
 After cleaning the data, we produced some exploratory plots to see if there was a relationship between operating system and stress and to see if the potential confounders had any association with operating system or stress.  
 
-To determine if operating system affects stress level, we fit a linear regression model and tested the significance of operating.
+To determine if operating system affects stress level, we fit linear regression and proportional odds models and tested the significance of `os`. 
 
 
 
