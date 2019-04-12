@@ -1,0 +1,35 @@
+---
+title: "Final Report"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(broom)
+```
+
+```{r}
+data <- read_csv("../data/cleaned_data.csv") %>% filter(os != "Linux")
+tidy(anova(lm(stress ~ os + coding + background + work_year + age + gender, data = data)))
+```
+
+By running a linear model and analyizing the results in an ANOVA table, we see that no covariate seems to hold a statistically significant relationship with our response variable, the stress level. The p-values are all clearly above any reasonable significance level, which indicates that no variable, when added to the model, provides any extra insight on predicting the stress level of students. The graph below shows this conclusion visually: there is no clear pattern or relationship between stress level and our hypothesized explanatory variable, operating system:
+
+```{r, echo=FALSE}
+data %>% 
+  filter(os != "Linux") %>% 
+  ggplot(aes(x=os, y=stress)) +
+  geom_boxplot() +
+  geom_jitter(alpha = 0.3) +
+  theme_bw() +
+  ylab("Stress Level") +
+  xlab("") +
+  ggtitle("Fig.2: Operating System vs. Stress Level") +
+  theme(axis.title.x = element_text(margin = margin(t = 15, r = 0, b = 10, l = 0)),
+        axis.title.y = element_text(margin = margin(t = 0, r = 15, b = 0, l = 10)))+
+  theme(plot.title = element_text(size=11))
+```
+
+If anything, we could argue that most Windows users are concentrated around higher stress levels, whereas a significant part of Mac users present mid-low levels of stress (< 7 in the 0-10 scale). However, our linear regression suggests that this could well have happened just due to random chance, especially given the amount of data that we have.
+
