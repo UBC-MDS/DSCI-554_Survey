@@ -1,6 +1,6 @@
 ---
 title: "Final Report"
-output: github_document
+output: pdf_document
 ---
 
 ## Research Question
@@ -27,7 +27,7 @@ After cleaning the data, we produced some exploratory plots to see if there was 
 
 To determine if operating system affects stress level, we fit linear regression and proportional odds models and tested the significance of `os` on `stress`. 
 
-## Analysis Results and Discussion
+## Analysis, Results, and Discussion
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -45,7 +45,7 @@ Our first approach was to try a simple linear regression relating the response v
 tidy(anova(lm(stress ~ os, data = data)))
 ```
 
-A p-value greater than 0.6 suggests that this relationship is not evidenced by the data. We then proceed to refine our model slightly by conditioning the model to an ordinal output. This represents an improvement given that respondents provided their self-assessed stress levels from a discrete scale of 1 to 10. Here's what we obtained:
+A p-value greater than 0.6 for `os` suggests that there is no significant relationship between operating system and stress in the data. We then proceeded to refine our model by conditioning the model to an ordinal output. This represents an improvement given that respondents provided their self-assessed stress levels from a discrete scale of 1 to 10. Here's what we obtained:
 
 ```{r}
 # proportional odds model, stress and os only
@@ -56,16 +56,16 @@ results <- results %>%
 results
 ```
 
-We **approximated** the p-values of each parameter by calculating the probability of observing a more extreme statistic in a standard normal distribution. Again, although Windows seems to suggest higher stress levels, the results are far from being statistically significant.
+We *approximated* the p-values of each parameter by calculating the probability of observing a more extreme statistic in a standard normal distribution. Again, although Windows users seem to have higher stress levels, the results are far from being statistically significant.
 
-Finally, we proceed to one last try, in which we include other confounders in the model, in the hope of finding some surprising insight on what may be associated with higher stress levels. Our hypothesis is that perhaps people with better coding skills (whether it be due to their background, previous experience or just more confidence in their abilities), will show less signs of stress.
+Finally, we tried a model that included som confounders, in the hope of finding some surprising insight on what may be associated with higher stress levels. Our hypothesis is that perhaps people with better coding skills (whether it be due to their background, previous experience or just more confidence in their abilities), will show less signs of stress.
 
 ```{r}
 # linear regression with coding and background
 tidy(anova(lm(stress ~ os + coding + background, data = data)))
 ```
 
-By running the linear model and analyizing the results in an ANOVA table, we see that no covariate seems to hold a statistically significant relationship with our response variable, the stress level. The p-values are all clearly above any reasonable significance level, which indicates that no variable, when added to the model, provides any extra insight on predicting the stress level of students. The graph below shows this conclusion visually: there is no clear pattern or relationship between stress level and our hypothesized explanatory variable, operating system:
+By fitting the linear model and analyzing the results in an ANOVA table, we see that no covariate seems to have a statistically significant relationship with our response variable, stress level. The p-values are all clearly above any reasonable significance level, which indicates that no variable, when added to the model, provides any extra insight on predicting the stress level of students. The graph below shows this conclusion visually: there is no clear pattern or relationship between stress level and our hypothesized explanatory variable, operating system.
 
 
 ```{r, fig 1 boxplot, echo=FALSE}
@@ -83,7 +83,7 @@ data %>%
   theme(plot.title = element_text(size=11))
 ```
 
-If anything, we could argue that most Windows users are concentrated around higher stress levels, whereas a significant part of Mac users present mid-low levels of stress (< 7 in the 0-10 scale). However, our linear regression suggests that this could well have happened just due to random chance, especially given the small amount of data that we have.
+If anything, we could argue that most Windows users are concentrated around higher stress levels, whereas a significant part of Mac users present mid-to-low levels of stress (< 7 on a 0-10 scale). However, our linear regression suggests that this could well have happened just due to random chance, especially given the small amount of data that we have.
 
 ## Survey & Study Design and Discussion
 
@@ -91,14 +91,14 @@ In the proposal phase, we tried to be exhaustive in identifying potential confou
 
 Nevertheless we identified a few bumps during our study that affected our result:
 
-1. We value our classmates’s privacy and gave this a lot of thought in the design process. We received valuable feedback from some of our classmates who noted that they were concerned about identifiability while responding to our survey, and some mentioned not completing the survey due to this concern. A few candidates choose “Prefer not to say” for both “gender” and ”age” and this reinforced for us that the combination of these two data points could also lead to the a respondent’s identification from their responses. As a result, we note that our survey questions may have affected our response rate and the quality of the data we collected.
+1. We value our classmates’ privacy and gave this a lot of thought in the design process. We received valuable feedback from some of our classmates who noted that they were concerned about identifiability while responding to our survey, and some mentioned not completing the survey due to this concern. A few respondents chose “Prefer not to say” for both “gender” and ”age” and this reinforced for us that the combination of these two data points could be used to uniquely identify some respondents. As a result, we note that our survey questions may have affected our response rate and the quality of the data we collected.
 
-2. Following the point above, we hit a technical bump during the survey. We used regex to avoid an invalid input for “age”. Being unfamiliar with the tool and having not had as much time as we would have wanted for thorough survey testing, our survey returned errors for some of our respondents. For example, if a respondent selected “Prefer not to say”, the platform still required them to input a number for “age”. This was pointed out by respondent and may have lead us to a loss of responses or lower quality responses. 
+2. Following the point above, we hit a technical bump during the survey. We used regexes to avoid invalid inputs for age and work experience. Being unfamiliar with the tool and having not had as much time as we would have wanted for thorough survey testing, our survey returned errors for some of our respondents. For example, if a respondent selected “Prefer not to say”, the platform still required them to input a number for “age”. This was pointed out by a respondent and may have resulted in a loss of responses or lower quality responses. 
 
-3. Based on instructor feedback, we realized that the question related to the working experience is too general, we should rephrase the question to link working experience with operating system, so that the question would be more meaningful.
+3. Based on instructor feedback, we realized that the question about work experience was too general. We should have rephrased the question to link working experience with operating system to make it more relevant to our question.
 
 If we got the chance to do this survey again, here are some improvements we would implement:
 
-1. We would be asked either “age” or “gender” instead of both, to eliminate the privacy concern of the candidates. And for the survey question about “age”, we would bin the “age” variable to make it more unidentifiable. Hopefully this could improve our response rate and perhaps the quality of our data.
+1. We might consider asking respondents for either “age” or “gender,” instead of both, to address the privacy concerns of some respondents. And for the survey question about “age”, we would bin the “age” variable to make it more unidentifiable. Hopefully this could improve our response rate and perhaps the quality of our data.
 
-2. Since the result shows that there were no significant relationship between OS and stress level, there is still chances that we missed some confounders. We would add an open-ended question like “What causes the stress in your opinion?” or “Why do you use your OS of choice?” to see if there are anything we missed.
+2. Since the result shows that there were no significant relationship between OS and stress level, there is still chances that we missed some confounders. We would add an open-ended question like “What causes the stress in your opinion?” or “Why do you use your OS of choice?” to see if there was anything we missed.
