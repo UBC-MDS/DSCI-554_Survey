@@ -60,7 +60,7 @@ Our survey data can be found in [here.](https://github.ubc.ca/MDS-2018-19/DSCI55
 ### Proposed Statistical Tests
 We plan to fit a linear regression model with level of stress as the response and laptop operating and any relevant confounders as covariates. We will test whether the coefficient of laptop operating system is significant to determine if operating system affects stress level. We also included a proportional odds logistic regression model.
 
-Scripts with our analysis can be found [here](https://github.com/UBC-MDS/os_stress_survey/tree/master/src) and in our [final report](https://github.com/UBC-MDS/os_stress_survey/blob/master/doc/final_report_results.Rmd). 
+Scripts with our analysis can be found [here](https://github.com/UBC-MDS/os_stress_survey/tree/master/src) and in our [final report](https://github.com/UBC-MDS/os_stress_survey/blob/master/doc/final_report.Rmd). 
 
 ### Ethical Considerations
 Our survey contains some questions about indirect identifiers. Knowing an MDS student's age, gender, and operating system could be enough information to uniquely identify some individuals. While our survey will record personal information, we will use methods (such as k-anonymity) to ensure that we respect student privacy. According to UBC's ethics guidelines for online surveys, we must ensure that all data collected from our survey is stored and accessed only in Canada or obtain consent from survey respondents to store their personal information in another jurisdiction. The ethics guidelines also state that we must obtain consent from survey respondents to participate in our research (either by signed consent form or cover letter).
