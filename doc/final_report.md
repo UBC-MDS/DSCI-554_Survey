@@ -43,7 +43,7 @@ tidy(anova(lm(stress ~ os, data = data)))
     ## 1 os            2   4.63   2.32     0.479   0.623
     ## 2 Residuals    49 237.     4.84    NA      NA
 
-A p-value greater than 0.6 for `os` suggests that there is no significant relationship between operating system and stress in the data. We then proceeded to refine our model by conditioning the model to an ordinal output. This represents an improvement given that respondents provided their self-assessed stress levels from a discrete scale of 1 to 10. Here's what we obtained:
+A p-value greater than 0.6 for `os` suggests that there is no significant relationship between operating system and stress in the data. We then proceeded to refine our model by conditioning the model on an ordinal response. This represents an improvement given that respondents provided their self-assessed stress levels from a discrete scale of 1 to 10. Here's what we obtained:
 
 ``` r
 # proportional odds model, stress and os only

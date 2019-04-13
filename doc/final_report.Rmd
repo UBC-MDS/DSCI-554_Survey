@@ -1,6 +1,6 @@
 ---
 title: "Final Report"
-output: pdf_document
+output: github_document
 ---
 
 ## Research Question
@@ -45,7 +45,7 @@ Our first approach was to try a simple linear regression relating the response v
 tidy(anova(lm(stress ~ os, data = data)))
 ```
 
-A p-value greater than 0.6 for `os` suggests that there is no significant relationship between operating system and stress in the data. We then proceeded to refine our model by conditioning the model to an ordinal output. This represents an improvement given that respondents provided their self-assessed stress levels from a discrete scale of 1 to 10. Here's what we obtained:
+A p-value greater than 0.6 for `os` suggests that there is no significant relationship between operating system and stress in the data. We then proceeded to refine our model by conditioning the model on an ordinal response. This represents an improvement given that respondents provided their self-assessed stress levels from a discrete scale of 1 to 10. Here's what we obtained:
 
 ```{r}
 # proportional odds model, stress and os only
