@@ -4,7 +4,7 @@
   <a href="#research-question">Research Question</a> &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;
   <a href="#survey-questions-to-target-confounders">Survey Questions</a> &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;
   <a href="#data">Data</a>&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;
-  <a href="#statistical-tests">Statistical Tests</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <a href="#proposed-statistical-tests">Statistical Tests</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <br>
   <a href="#ethical-considerations">Ethical Considerations</a>&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;
   <a href="#exploratory-data-analysis">Exploratory Data Analysis</a>&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;
