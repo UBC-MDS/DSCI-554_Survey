@@ -2,11 +2,12 @@
 title: "Final Report"
 output: pdf_document
 ---
-## Question
 
-##### Research Question
+## Research Question
 
-Does laptop operating system influence a person's self-rated level of stress in the MDS program?
+__*Does laptop operating system influence a person's self-rated level of stress in the MDS program?*__
+
+We think this is an important question to research as this question might help future students be best set up for success in the MDS program. It might also help program instructors in designing better learning activities. If instructors know that a student's choice of OS influences one's stress levels, instructors may be able to keep OS-specific issues in mind while designing learning activities in order to mitigate sources of student stress.
 
 ## Methods
 
@@ -18,40 +19,28 @@ For work experience and age we asked users to enter a number, rather than having
 
 ##### Data Collection  
 
-We collected the survey data using the UBC-hosted version of Qualtrics, as recommended by the UBC Office of Research Ethics. We sent the survey out to MDS students during lab time and received 52 responses. 
+We collected the survey data using the UBC-hosted version of Qualtrics, as recommended by the UBC Office of Research Ethics. We sent the [survey](https://ubc.ca1.qualtrics.com/jfe/form/SV_5vCjgpmcxJ0faLj) out to MDS students during lab time and received 52 responses. 
 
 ##### Analysis Methods
 
-After cleaning the data, we produced some exploratory plots to see if there was a relationship between operating system and stress and to see if the potential confounders had any association with operating system or stress.  
+After cleaning the data, we produced some exploratory plots to see if there was a relationship between operating system and stress and to see if the potential confounders had any association with operating system or stress. Our exploratory data analysis can be found [here](https://github.com/UBC-MDS/os_stress_survey/blob/master/doc/eda.md). 
 
-To determine if operating system affects stress level, we fit linear regression and proportional odds models and tested the significance of `os`. 
+To determine if operating system affects stress level, we fit linear regression and proportional odds models and tested the significance of `os` on `stress`. 
 
-
-
-
-
-## Analysis
-
-We performed a linear regression analysis on our data with our response being `stress` and our predictors including `os`, `coding`, `background`, `work_year`, `age`, `gender`. 
-
-`lm(stress ~ os + coding + background + work_year + age + gender, data = data)`
-
-Our model was additive as we don't have enough data nor reasons from our hypothesis to include interactions.
-
-## Results and Discussion
+## Analysis Results and Discussion
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(broom)
 library(MASS)
+
+data <- read_csv("../cleaned_data.csv")
 ```
 
 Our first approach was to try a simple linear regression relating the response variable - stress levels - with the explanatory variable of interest, the operating system.
 
 ```{r}
-data <- read_csv("../data/cleaned_data.csv")
-
 # linear regression with stress and os only
 tidy(anova(lm(stress ~ os, data = data)))
 ```
@@ -67,7 +56,7 @@ results <- results %>%
 results
 ```
 
-We **approximated** the p_values of each parameter by calculating the probability of observing a more extreme statistic in a standard normal distribution. Again, although Windows seems to suggest higher stress levels, the results are far from being statistically significant.
+We **approximated** the p-values of each parameter by calculating the probability of observing a more extreme statistic in a standard normal distribution. Again, although Windows seems to suggest higher stress levels, the results are far from being statistically significant.
 
 Finally, we proceed to one last try, in which we include other confounders in the model, in the hope of finding some surprising insight on what may be associated with higher stress levels. Our hypothesis is that perhaps people with better coding skills (whether it be due to their background, previous experience or just more confidence in their abilities), will show less signs of stress.
 
@@ -96,3 +85,20 @@ data %>%
 
 If anything, we could argue that most Windows users are concentrated around higher stress levels, whereas a significant part of Mac users present mid-low levels of stress (< 7 in the 0-10 scale). However, our linear regression suggests that this could well have happened just due to random chance, especially given the small amount of data that we have.
 
+## Survey & Study Design and Discussion
+
+In the proposal phase, we tried to be exhaustive in identifying potential confounders for our response variables and hypothesized cause. We brainstormed based on intuition and experience. We came up with a clear, plausible and interesting hypothesis, with the aim of exploring causality.
+
+Nevertheless we identified a few bumps during our study that affected our result:
+
+1. We value our classmates’s privacy and gave this a lot of thought in the design process. We received valuable feedback from some of our classmates who noted that they were concerned about identifiability while responding to our survey, and some mentioned not completing the survey due to this concern. A few candidates choose “Prefer not to say” for both “gender” and ”age” and this reinforced for us that the combination of these two data points could also lead to the a respondent’s identification from their responses. As a result, we note that our survey questions may have affected our response rate and the quality of the data we collected.
+
+2. Following the point above, we hit a technical bump during the survey. We used regex to avoid an invalid input for “age”. Being unfamiliar with the tool and having not had as much time as we would have wanted for thorough survey testing, our survey returned errors for some of our respondents. For example, if a respondent selected “Prefer not to say”, the platform still required them to input a number for “age”. This was pointed out by respondent and may have lead us to a loss of responses or lower quality responses. 
+
+3. Based on instructor feedback, we realized that the question related to the working experience is too general, we should rephrase the question to link working experience with operating system, so that the question would be more meaningful.
+
+If we got the chance to do this survey again, here are some improvements we would implement:
+
+1. We would be asked either “age” or “gender” instead of both, to eliminate the privacy concern of the candidates. And for the survey question about “age”, we would bin the “age” variable to make it more unidentifiable. Hopefully this could improve our response rate and perhaps the quality of our data.
+
+2. Since the result shows that there were no significant relationship between OS and stress level, there is still chances that we missed some confounders. We would add an open-ended question like “What causes the stress in your opinion?” or “Why do you use your OS of choice?” to see if there are anything we missed.
