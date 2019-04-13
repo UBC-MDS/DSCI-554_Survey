@@ -1,6 +1,6 @@
 ---
 title: "Final Report"
-output: pdf_document
+output: github_document
 ---
 
 ## Research Question
@@ -68,7 +68,7 @@ tidy(anova(lm(stress ~ os + coding + background, data = data)))
 By running the linear model and analyizing the results in an ANOVA table, we see that no covariate seems to hold a statistically significant relationship with our response variable, the stress level. The p-values are all clearly above any reasonable significance level, which indicates that no variable, when added to the model, provides any extra insight on predicting the stress level of students. The graph below shows this conclusion visually: there is no clear pattern or relationship between stress level and our hypothesized explanatory variable, operating system:
 
 
-```{r, echo=FALSE}
+```{r, fig 1 boxplot, echo=FALSE}
 data %>% 
   filter(os != "Linux") %>% 
   ggplot(aes(x=os, y=stress)) +
@@ -77,7 +77,7 @@ data %>%
   theme_bw() +
   ylab("Stress Level") +
   xlab("") +
-  ggtitle("Fig.2: Operating System vs. Stress Level") +
+  ggtitle("Fig.1: Operating System vs. Stress Level") +
   theme(axis.title.x = element_text(margin = margin(t = 15, r = 0, b = 10, l = 0)),
         axis.title.y = element_text(margin = margin(t = 0, r = 15, b = 0, l = 10)))+
   theme(plot.title = element_text(size=11))

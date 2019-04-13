@@ -134,7 +134,7 @@ below shows this conclusion visually: there is no clear pattern or
 relationship between stress level and our hypothesized explanatory
 variable, operating system:
 
-![](final_report_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
+![](final_report_files/figure-gfm/fig%201%20boxplot-1.png)<!-- -->
 
 If anything, we could argue that most Windows users are concentrated
 around higher stress levels, whereas a significant part of Mac users
