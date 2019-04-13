@@ -1,0 +1,98 @@
+---
+title: "Final Report"
+output: pdf_document
+---
+## Question
+
+##### Research Question
+
+Does laptop operating system influence a person's self-rated level of stress in the MDS program?
+
+## Methods
+
+##### Survey Study Design
+
+Our survey asks respondents what operating system they use on their laptop (Linux, Mac, or Windows) and  what their level of stress is on a scale from 0 to 10, where 0 represents "little or no stress" and 10 represents "a great deal of stress." The remaining questions targetted what we thought could be potential confounders: age, work experience, gender, self-reported coding proficiency, and academic background. 
+
+For work experience and age we asked users to enter a number, rather than having pre-determined bins. We did this so that we could have more detailed data for our analysis. For academic background, we chose to provide some pre-specified categories to simplify data wrangling later. Coding proficiency was also rated on a scale. In order to preserve survey respondents' anonymity, we gave them a "prefer not to say" option for questions about age, work experience, and gender. 
+
+##### Data Collection  
+
+We collected the survey data using the UBC-hosted version of Qualtrics, as recommended by the UBC Office of Research Ethics. We sent the survey out to MDS students during lab time and received 52 responses. 
+
+##### Analysis Methods
+
+After cleaning the data, we produced some exploratory plots to see if there was a relationship between operating system and stress and to see if the potential confounders had any association with operating system or stress.  
+
+To determine if operating system affects stress level, we fit linear regression and proportional odds models and tested the significance of `os`. 
+
+
+
+
+
+## Analysis
+
+We performed a linear regression analysis on our data with our response being `stress` and our predictors including `os`, `coding`, `background`, `work_year`, `age`, `gender`. 
+
+`lm(stress ~ os + coding + background + work_year + age + gender, data = data)`
+
+Our model was additive as we don't have enough data nor reasons from our hypothesis to include interactions.
+
+## Results and Discussion
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(broom)
+library(MASS)
+```
+
+Our first approach was to try a simple linear regression relating the response variable - stress levels - with the explanatory variable of interest, the operating system.
+
+```{r}
+data <- read_csv("../data/cleaned_data.csv")
+
+# linear regression with stress and os only
+tidy(anova(lm(stress ~ os, data = data)))
+```
+
+A p-value greater than 0.6 suggests that this relationship is not evidenced by the data. We then proceed to refine our model slightly by conditioning the model to an ordinal output. This represents an improvement given that respondents provided their self-assessed stress levels from a discrete scale of 1 to 10. Here's what we obtained:
+
+```{r}
+# proportional odds model, stress and os only
+results <- tidy(polr(as.factor(stress) ~ os, data = data))
+results <- results %>% 
+  mutate(p_value = pnorm(statistic, lower.tail = FALSE))
+
+results
+```
+
+We **approximated** the p_values of each parameter by calculating the probability of observing a more extreme statistic in a standard normal distribution. Again, although Windows seems to suggest higher stress levels, the results are far from being statistically significant.
+
+Finally, we proceed to one last try, in which we include other confounders in the model, in the hope of finding some surprising insight on what may be associated with higher stress levels. Our hypothesis is that perhaps people with better coding skills (whether it be due to their background, previous experience or just more confidence in their abilities), will show less signs of stress.
+
+```{r}
+# linear regression with coding and background
+tidy(anova(lm(stress ~ os + coding + background, data = data)))
+```
+
+By running the linear model and analyizing the results in an ANOVA table, we see that no covariate seems to hold a statistically significant relationship with our response variable, the stress level. The p-values are all clearly above any reasonable significance level, which indicates that no variable, when added to the model, provides any extra insight on predicting the stress level of students. The graph below shows this conclusion visually: there is no clear pattern or relationship between stress level and our hypothesized explanatory variable, operating system:
+
+
+```{r, echo=FALSE}
+data %>% 
+  filter(os != "Linux") %>% 
+  ggplot(aes(x=os, y=stress)) +
+  geom_boxplot() +
+  geom_jitter(alpha = 0.3) +
+  theme_bw() +
+  ylab("Stress Level") +
+  xlab("") +
+  ggtitle("Fig.2: Operating System vs. Stress Level") +
+  theme(axis.title.x = element_text(margin = margin(t = 15, r = 0, b = 10, l = 0)),
+        axis.title.y = element_text(margin = margin(t = 0, r = 15, b = 0, l = 10)))+
+  theme(plot.title = element_text(size=11))
+```
+
+If anything, we could argue that most Windows users are concentrated around higher stress levels, whereas a significant part of Mac users present mid-low levels of stress (< 7 in the 0-10 scale). However, our linear regression suggests that this could well have happened just due to random chance, especially given the small amount of data that we have.
+
